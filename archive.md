@@ -5,13 +5,18 @@ header : Post Archive
 group: navigation
 ---
 
-<h1>Archive of posts from {{ page.date | date: "%Y" }}</h1>
+<div class="post">
+	  {% for post in site.posts %}
+	    {% unless post.next %}
+	      <h3>{{ post.date | date: '%Y' }}</h3>
+	    {% else %}
+	      {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+	      {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
+	      {% if year != nyear %}
+	        <h3>{{ post.date | date: '%Y' }}</h3>
+	      {% endif %}
+	    {% endunless %}
 
-<ul class="posts">
-{% for post in page.posts %}
-  <li>
-    <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-    <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-  </li>
-{% endfor %}
-</ul>
+    	<ul><li><p>{{ post.date | date: "%d %b %Y" }} &mdash; <a href="{{ post.url | prepend: site.baseurl }}"> {{ post.title }}</a></p></li></ul>
+	  {% endfor %}
+</div>
