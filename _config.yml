@@ -35,6 +35,19 @@ github_username:  jekyll
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-paginate
+  - jekyll-gist
+
+markdown:         kramdown
+highlighter:      rouge
+
+permalink:        pretty
+#relative_permalinks: true
+
+paginate:         5
+version:          2.1.0
+github:
+  repo:           https://github.com/poole/hyde
 
 # Exclude from processing.
 # The following items will not be processed, by default.
